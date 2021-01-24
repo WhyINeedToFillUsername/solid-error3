@@ -1,0 +1,16 @@
+<h1>Inrupt</h1>
+<section id="login" class="panel">
+  <div class="row" *ngIf="inruptService.session.info.isLoggedIn; then thenBlock else elseBlock"></div>
+  <ng-template #thenBlock>
+    User logged in: <em>{{webId}}</em>
+    <button mat-raised-button color="accent" (click)="logout()">Logout</button>
+  </ng-template>
+  <ng-template #elseBlock>
+    <h2>Start by logging in:</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>1st specify OIDC issuer (where you want to log in, inrupt or solid):</mat-label>
+      <input matInput type="url" [(ngModel)]="oidcIssuer">
+    </mat-form-field>
+    <button mat-raised-button color="primary" id="btnLogin" (click)="login()">Login</button>
+  </ng-template>
+</section>
